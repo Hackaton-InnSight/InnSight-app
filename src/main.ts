@@ -5,6 +5,7 @@ import {bootstrapExtra} from "@workadventure/scripting-api-extra";
 
 import { TiledMap, TiledObject, Layer } from './interfaces/TiledMap';
 import axios from "axios";
+// import {RemotePlayerInterface} from "@workadventure/iframe-api-typings";
 
 const API_BASE_URL = "http://localhost:8080/"
 
@@ -24,6 +25,45 @@ WA.onInit().then(async () => {
     })
 
     WA.room.area.onLeave('clock').subscribe(closePopup)
+
+    WA.room.area.onEnter('car_red').subscribe(() => {
+        const mySound = WA.sound.loadSound("./sounds/son_ferrari.ogg");
+        const config = {
+            volume : 1,
+            loop : false,
+            rate : 1,
+            detune : 1,
+            delay : 0,
+            seek : 0,
+            mute : false
+        }
+        mySound.play(config);
+
+        currentPopup = WA.ui.openPopup("carPopup", "VROOOM VROOOM", []);
+    });
+    WA.room.area.onLeave('carPopup').subscribe(closePopup);
+
+    // WA.room.area.onEnter('elevator_zone').subscribe(() => {
+    //    WA.ui.onRemotePlayerClicked.subscribe((remotePlayer: RemotePlayerInterface) => {
+    //        remotePlayer.addAction('Take the elevator', () => {
+    //            console.log("je suis ici");
+    //        });
+    //    });
+    // });
+
+    WA.room.area.onEnter('elevator_wait_zone').subscribe(() => {
+        const mySound = WA.sound.loadSound("./sounds/son_elevator.ogg");
+        const config = {
+            volume : 1,
+            loop : true,
+            rate : 1,
+            detune : 1,
+            delay : 0,
+            seek : 0,
+            mute : false
+        }
+        mySound.play(config);
+    });
 
     const chambers = await getChambersWithId();
 
