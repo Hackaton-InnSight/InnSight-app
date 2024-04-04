@@ -463,28 +463,6 @@
                  "y":544
                 }, 
                 {
-                 "height":33.8123415046492,
-                 "id":20,
-                 "name":"log",
-                 "rotation":0,
-                 "type":"area",
-                 "visible":true,
-                 "width":63.3981403212172,
-                 "x":257.114680191603,
-                 "y":509.298393913778
-                }, 
-                {
-                 "height":47.9008171315863,
-                 "id":21,
-                 "name":"logPopup",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":106.367990983376,
-                 "x":236.686390532544,
-                 "y":457.875457875458
-                }, 
-                {
                  "height":44,
                  "id":22,
                  "name":"chamber",
@@ -498,8 +476,8 @@
                  "type":"area",
                  "visible":true,
                  "width":97,
-                 "x":793,
-                 "y":114
+                 "x":795,
+                 "y":130
                 }, 
                 {
                  "height":44,
@@ -517,6 +495,17 @@
                  "width":97,
                  "x":426.5,
                  "y":242
+                }, 
+                {
+                 "height":61,
+                 "id":25,
+                 "name":"chamberDetailPopup",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":129,
+                 "x":656,
+                 "y":121
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -599,7 +588,7 @@
          "y":0
         }],
  "nextlayerid":63,
- "nextobjectid":25,
+ "nextobjectid":26,
  "orientation":"orthogonal",
  "properties":[
         {

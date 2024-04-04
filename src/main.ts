@@ -29,14 +29,18 @@ WA.onInit().then(async () => {
 
     // Initialize onEnter function for each chamber in the hotel.
     for (const chamber of chambers) {
-        WA.room.area.onEnter(chamber.name).subscribe(() => {
-            console.log(chamber.chamberId);
-            console.log("DEBUG API: ", API_BASE_URL + `rooms/${chamber.chamberId}`);
-            fetchChamberData(105);
+        WA.room.area.onEnter(chamber.name).subscribe(async () => {
+            try {
+                const data = await fetchChamberData(chamber.chamberId);
+                console.log(data.description);
+                currentPopup = WA.ui.openPopup("chamberDetailPopup", data.description, []);
+            } catch (error) {
+                console.error("Error fetching chamber details");
+            }
         });
     }
 
-    // Open the modal for each chamber in the hotel.
+    /* Open the modal for each chamber in the hotel.
     for (const chamber of chambers)
     {
         WA.room.area.onEnter(chamber.name).subscribe(() => {
@@ -47,9 +51,11 @@ WA.onInit().then(async () => {
             });
         });
     }
+     */
 
-    WA.room.area.onLeave("log").subscribe(closeModal);
-    WA.room.area.onLeave("log").subscribe(closePopup);
+    for (const chamber of chambers) {
+        WA.room.area.onLeave(chamber.name).subscribe(closePopup);
+    }
 
     // The line below bootstraps the Scripting API Extra library that adds a number of advanced properties/features to WorkAdventure
     bootstrapExtra().then(() => {
@@ -63,10 +69,6 @@ function closePopup(){
         currentPopup.close();
         currentPopup = undefined;
     }
-}
-
-function closeModal() {
-    WA.ui.modal.closeModal();
 }
 
 // Get all chambers with an chamberId custom prop.
@@ -97,9 +99,11 @@ async function getChambersWithId(): Promise<{ name: string; chamberId: number }[
 async function fetchChamberData(chamberId: number) {
     try {
         const response = await axios.get(`${API_BASE_URL}rooms/${chamberId}`);
-        console.log(response.data.description);
+        return response.data;
     } catch (error) {
         console.error(error);
+        throw new Error("Failed to fetch data");
     }
 }
+
 export {};
