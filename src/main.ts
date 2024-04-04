@@ -3,7 +3,7 @@
 import {bootstrapExtra} from "@workadventure/scripting-api-extra";
 // MapLogic.ts
 
-import { TiledMap } from './interfaces/TiledMap';
+import { TiledMap, TiledObject, Layer } from './interfaces/TiledMap';
 
 console.log('Script started successfully');
 
@@ -64,14 +64,20 @@ function closeModal() {
     WA.ui.modal.closeModal();
 }
 
-// Get all chambers with an chamberId custom prop, to use it to fetch details in the booking api.
-async function getChambersWithId(): Promise<{ name: string; chamberId: any }[]> {
-    const hotelMap: TiledMap = await WA.room.getTiledMap();
+// Get all chambers with an chamberId custom prop.
+function filterChambersWithIdFromTiledLayer(layers: Layer[]): TiledObject[] {
+    const floorLayer = layers.find(layer => layer.name === "floorLayer");
+    if (!floorLayer || !floorLayer.objects) return [];
 
-    const chambersWithId = hotelMap.layers
-        .find(layer => layer.name === "floorLayer")
-        ?.objects
-        ?.filter(obj => obj.properties?.some(prop => prop.name === "chamberId")) || [];
+    return floorLayer.objects.filter(obj =>
+        obj.properties?.some(prop => prop.name === "chamberId")
+    );
+}
+
+//  Return an array with the chamber name and the chamberId for each chamber.
+async function getChambersWithId(): Promise<{ name: string; chamberId: number }[]> {
+    const hotelMap: TiledMap = await WA.room.getTiledMap();
+    const chambersWithId = filterChambersWithIdFromTiledLayer(hotelMap.layers)
 
     return chambersWithId.map(chamber => {
         const chamberIdProp = chamber.properties?.find(prop => prop.name === "chamberId");
