@@ -51,8 +51,8 @@ WA.onInit().then(async () => {
                  horizontal: "middle",
              },
              size: {
-                 height: "25vh",
-                 width: "25vw",
+                 height: "27.5vh",
+                 width: "auto",
              },
          })
      });
