@@ -43,13 +43,20 @@ WA.onInit().then(async () => {
     });
     WA.room.area.onLeave('carPopup').subscribe(closePopup);
 
-    // WA.room.area.onEnter('elevator_zone').subscribe(() => {
-    //    WA.ui.onRemotePlayerClicked.subscribe((remotePlayer: RemotePlayerInterface) => {
-    //        remotePlayer.addAction('Take the elevator', () => {
-    //            console.log("je suis ici");
-    //        });
-    //    });
-    // });
+     WA.room.area.onEnter('elevator_zone').subscribe(() => {
+         WA.ui.website.open({
+             url: "https://hackaton-innsight.github.io/select_elevator/",
+             position: {
+                 vertical: "top",
+                 horizontal: "middle",
+             },
+             size: {
+                 height: "25vh",
+                 width: "25vw",
+             },
+         })
+     });
+
 
     WA.room.area.onEnter('elevator_wait_zone').subscribe(() => {
         const mySound = WA.sound.loadSound("./sounds/son_elevator.ogg");
