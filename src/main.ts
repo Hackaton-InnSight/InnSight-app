@@ -4,6 +4,9 @@ import {bootstrapExtra} from "@workadventure/scripting-api-extra";
 // MapLogic.ts
 
 import { TiledMap, TiledObject, Layer } from './interfaces/TiledMap';
+import axios from "axios";
+
+const API_BASE_URL = "http://localhost:8080/"
 
 console.log('Script started successfully');
 
@@ -24,10 +27,12 @@ WA.onInit().then(async () => {
 
     const chambers = await getChambersWithId();
 
-    // Initialize onEnter function for each chamber in the hotel?.
+    // Initialize onEnter function for each chamber in the hotel.
     for (const chamber of chambers) {
         WA.room.area.onEnter(chamber.name).subscribe(() => {
             console.log(chamber.chamberId);
+            console.log("DEBUG API: ", API_BASE_URL + `rooms/${chamber.chamberId}`);
+            fetchChamberData(105);
         });
     }
 
@@ -36,7 +41,7 @@ WA.onInit().then(async () => {
     {
         WA.room.area.onEnter(chamber.name).subscribe(() => {
             WA.ui.modal.openModal({
-                allow: null, allowApi: false, position: "right", title: "",
+                allow: null, allowApi: true, position: "right", title: "",
                 src: 'https://workadventu.re'
 
             });
@@ -86,5 +91,15 @@ async function getChambersWithId(): Promise<{ name: string; chamberId: number }[
             chamberId: chamberIdProp ? chamberIdProp.value : null,
         };
     });
+}
+
+// Get details from reservation api for a chamber identified by his chamberId
+async function fetchChamberData(chamberId: number) {
+    try {
+        const response = await axios.get(`${API_BASE_URL}rooms/${chamberId}`);
+        console.log(response.data.description);
+    } catch (error) {
+        console.error(error);
+    }
 }
 export {};
