@@ -7,7 +7,8 @@ import axios from "axios";
 import {ActionMessage} from "@workadventure/iframe-api-typings";
 // import {RemotePlayerInterface} from "@workadventure/iframe-api-typings";
 
-const API_BASE_URL = "http://localhost:8080/"
+//const API_BASE_URL = "http://localhost:8080/"
+const API_BASE_URL = "https://backend-junv3t2loq-ew.a.run.app/"
 
 console.log('Script started successfully');
 
