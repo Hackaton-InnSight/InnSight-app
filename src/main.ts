@@ -153,8 +153,10 @@ WA.onInit().then(async () => {
                     src: 'https://workadventu.re'
                 });
 
+                //const isAvailable = await fetchDataFromAPI(`${API_BASE_URL}rooms/available/${chamber.chamberId}`);
+                const isAvailable = true;
                 currentWebsite = await WA.ui.website.open({
-                    url: "https://hackaton-innsight.github.io/room-availabality/?roomId=5&isAvailable=true",
+                    url: `https://hackaton-innsight.github.io/room-availabality/?roomId=${chamber.chamberId}isAvailable=${isAvailable}`,
                     position: {
                         vertical: "middle",
                         horizontal: "middle",
