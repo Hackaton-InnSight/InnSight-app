@@ -469,23 +469,12 @@
                  "y":205
                 }, 
                 {
-                 "height":99,
-                 "id":26,
-                 "name":"room_1",
-                 "rotation":0,
-                 "type":"area",
-                 "visible":true,
-                 "width":178,
-                 "x":361,
-                 "y":556
-                }, 
-                {
                  "height":27,
                  "id":28,
                  "name":"front_room_2",
                  "properties":[
                         {
-                         "name":"roomId",
+                         "name":"frontRoomId",
                          "type":"int",
                          "value":2
                         }],
@@ -497,23 +486,12 @@
                  "y":223
                 }, 
                 {
-                 "height":99,
-                 "id":29,
-                 "name":"room_2",
-                 "rotation":0,
-                 "type":"area",
-                 "visible":true,
-                 "width":178,
-                 "x":397,
-                 "y":102.5
-                }, 
-                {
                  "height":92,
                  "id":31,
                  "name":"front_room_1",
                  "properties":[
                         {
-                         "name":"roomId",
+                         "name":"frontRoomId",
                          "type":"int",
                          "value":1
                         }],
@@ -534,6 +512,40 @@
                  "width":129,
                  "x":268.5,
                  "y":567.5
+                }, 
+                {
+                 "height":91,
+                 "id":33,
+                 "name":"room_2",
+                 "properties":[
+                        {
+                         "name":"roomId",
+                         "type":"int",
+                         "value":2
+                        }],
+                 "rotation":0,
+                 "type":"area",
+                 "visible":true,
+                 "width":244,
+                 "x":371.5,
+                 "y":93.5
+                }, 
+                {
+                 "height":91,
+                 "id":34,
+                 "name":"room_1",
+                 "properties":[
+                        {
+                         "name":"roomId",
+                         "type":"int",
+                         "value":1
+                        }],
+                 "rotation":0,
+                 "type":"area",
+                 "visible":true,
+                 "width":244,
+                 "x":411,
+                 "y":548.5
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -616,7 +628,7 @@
          "y":0
         }],
  "nextlayerid":63,
- "nextobjectid":33,
+ "nextobjectid":35,
  "orientation":"orthogonal",
  "properties":[
         {

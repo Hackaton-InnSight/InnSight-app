@@ -27,12 +27,11 @@ WA.onInit().then(async () => {
 
     const chambers = await getChambersWithId();
 
+
     // Initialize onEnter function for each chamber in the hotel.
     for (const chamber of chambers) {
         WA.room.area.onEnter(chamber.name).subscribe(async () => {
             try {
-                const data = await fetchChamberData(chamber.chamberId);
-                currentPopup = WA.ui.openPopup(`${chamber.name}_details`, data.description, []);
                 WA.ui.modal.openModal({
                     allow: null,
                     allowApi: false,
@@ -40,7 +39,18 @@ WA.onInit().then(async () => {
                     title: "Booking",
                     src: 'https://workadventu.re'
                 });
+            } catch (error) {
+                console.error("Error fetching chamber details");
+            }
+        });
+    }
 
+    const frontRooms = await getFrontRoomId();
+    for (const frontRoom of frontRooms) {
+        WA.room.area.onEnter(frontRoom.name).subscribe(async () => {
+            try {
+                const data = await fetchChamberData(frontRoom.chamberId);
+                currentPopup = WA.ui.openPopup(`${frontRoom.name}_details`, data.description, []);
                 currentWebsite = await WA.ui.website.open({
                     url: "https://hackaton-innsight.github.io/room-availabality/?roomId=5&isAvailable=true",
                     position: {
@@ -53,9 +63,9 @@ WA.onInit().then(async () => {
                     },
                 })
             } catch (error) {
-                console.error("Error fetching chamber details");
+                console.error(error)
             }
-        });
+        })
     }
 
     //Spa zones
@@ -102,9 +112,13 @@ WA.onInit().then(async () => {
 
     // Closing popup and modal when leaving a room.
     for (const chamber of chambers) {
-        WA.room.area.onLeave(chamber.name).subscribe(closePopup);
         WA.room.area.onLeave(chamber.name).subscribe(closeModal);
-        WA.room.area.onLeave(chamber.name).subscribe(closeWebsite);
+    }
+
+    // Closing popup and iframe when leaving a front door.
+    for (const frontRoom of frontRooms) {
+        WA.room.area.onLeave(frontRoom.name).subscribe(closePopup);
+        WA.room.area.onLeave(frontRoom.name).subscribe(closeWebsite);
     }
 
     bootstrapExtra().then(() => {
@@ -139,6 +153,30 @@ function filterChambersWithIdFromTiledLayer(layers: Layer[]): TiledObject[] {
     return floorLayer.objects.filter(obj =>
         obj.properties?.some(prop => prop.name === "roomId")
     );
+}
+
+
+function getAllFrontRoomObjects(layers: Layer[]): TiledObject[] {
+    const floorLayer = layers.find(layer => layer.name === "floorLayer");
+    if (!floorLayer || !floorLayer.objects) return [];
+
+    return floorLayer.objects.filter(obj =>
+        obj.name.startsWith("front_room")
+    );
+}
+
+// Return an array with the chamber name and the chamberId for each chamber.
+async function getFrontRoomId(): Promise<{ name: string; chamberId: number }[]> {
+    const hotelMap: TiledMap = await WA.room.getTiledMap();
+    const frontRooms = getAllFrontRoomObjects(hotelMap.layers)
+
+    return frontRooms.map(frontroom => {
+        const roomIdProp = frontroom.properties?.find(prop => prop.name === "frontRoomId");
+        return {
+            name: frontroom.name,
+            chamberId: roomIdProp ? roomIdProp.value : null,
+        };
+    });
 }
 
 // Return an array with the chamber name and the chamberId for each chamber.
