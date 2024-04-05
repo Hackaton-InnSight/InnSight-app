@@ -9,6 +9,7 @@ import {ActionMessage} from "@workadventure/iframe-api-typings";
 
 //const API_BASE_URL = "http://localhost:8080/"
 const API_BASE_URL = "https://backend-junv3t2loq-ew.a.run.app/"
+const FRONT_URL = "https://reservation-api-u7r1.onrender.com/"
 
 console.log('Script started successfully');
 
@@ -150,7 +151,7 @@ WA.onInit().then(async () => {
                     allowApi: false,
                     position: "right",
                     title: "Booking",
-                    src: 'https://workadventu.re'
+                    src: `${FRONT_URL}rooms`
                 });
             } catch (error) {
                 console.error("Error fetching chamber details");
@@ -167,7 +168,7 @@ WA.onInit().then(async () => {
                 //const isAvailable = await fetchDataFromAPI(`${API_BASE_URL}rooms/available/${chamber.chamberId}`);
                 const isAvailable = true;
                 currentWebsite = await WA.ui.website.open({
-                    url: `https://hackaton-innsight.github.io/room-availabality/?roomId=${frontRoom.chamberId}isAvailable=${isAvailable}`,
+                    url: `https://hackaton-innsight.github.io/room-availabality/?roomId=${frontRoom.chamberId}&isAvailable=${isAvailable}`,
                     position: {
                         vertical: "middle",
                         horizontal: "middle",
@@ -187,7 +188,7 @@ WA.onInit().then(async () => {
     WA.room.area.onEnter('spa_counter').subscribe(() => {
         WA.ui.modal.openModal({
             allow: null, allowApi: true, position: "right", title: "Book your activity",
-            src: 'https://workadventu.re/?id='
+            src: ''
         });
     })
     WA.room.area.onLeave('spa_counter').subscribe(() => {
@@ -224,6 +225,26 @@ WA.onInit().then(async () => {
         currentPopup = WA.ui.openPopup("hammam_popup", "Il fait chaud ici...", []);
     })
     WA.room.area.onLeave('hammam').subscribe(closePopup)
+
+    WA.room.area.onEnter('restaurant-zone').subscribe(async () => {
+        closePopup()
+        currentPopup = WA.ui.openPopup("restaurant-zone-details", "Plat du jour : oeuf", []);
+    })
+    WA.room.area.onLeave('restaurant-zone').subscribe(closePopup)
+
+    WA.room.area.onEnter('lobby_counter').subscribe(async () => {
+        try {
+            WA.ui.modal.openModal({
+                allow: null,
+                allowApi: false,
+                position: "right",
+                title: "Booking",
+                src: `${FRONT_URL}rooms`
+            });
+        } catch (error) {
+            console.error("Error fetching chamber details");
+        }
+    });
 
     // Closing popup and modal when leaving a room.
     for (const chamber of chambers) {
