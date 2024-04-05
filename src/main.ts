@@ -5,6 +5,7 @@ import {bootstrapExtra} from "@workadventure/scripting-api-extra";
 
 import { TiledMap, TiledObject, Layer } from './interfaces/TiledMap';
 import axios from "axios";
+import {ActionMessage} from "@workadventure/iframe-api-typings";
 // import {RemotePlayerInterface} from "@workadventure/iframe-api-typings";
 
 const API_BASE_URL = "http://localhost:8080/"
@@ -17,6 +18,7 @@ let currentPopup: any = undefined;
 WA.onInit().then(async () => {
     console.log('Scripting API ready');
     console.log('Player tags: ', WA.player.tags)
+    console.log(WA.state)
 
     WA.room.area.onEnter('clock').subscribe(() => {
         const today = new Date();
@@ -42,6 +44,27 @@ WA.onInit().then(async () => {
         currentPopup = WA.ui.openPopup("carPopup", "VROOOM VROOOM", []);
     });
     WA.room.area.onLeave('carPopup').subscribe(closePopup);
+
+
+    WA.state.onVariableChange('doorState').subscribe((doorState) => {
+        displayDoor(doorState as boolean);
+    });
+
+    let openCloseMessage: ActionMessage | undefined;
+    WA.room.area.onEnter('inside_door').subscribe(() => {
+        openCloseMessage = WA.ui.displayActionMessage({
+            message: "Press 'space' to open/close the door",
+            callback: () => {
+                WA.state.doorState = !WA.state.doorState;
+            }
+        });
+    });
+    WA.room.area.onLeave('doorState').subscribe(() => {
+        if (openCloseMessage !== undefined) {
+            openCloseMessage.remove();
+        }
+    });
+
 
      WA.room.area.onEnter('elevator_zone').subscribe(() => {
          WA.ui.website.open({
@@ -104,6 +127,21 @@ WA.onInit().then(async () => {
     }).catch(e => console.error(e));
 
 }).catch(e => console.error(e));
+
+
+/**
+ * Utility function to display the correct door image depending on the state of the door.
+ */
+function displayDoor(state: boolean) {
+    if (state) {
+        WA.room.showLayer('Fixtures/door_closed');
+        WA.room.hideLayer('Aboves/door_opened');
+    } else {
+        WA.room.hideLayer('Fixtures/door_closed');
+        WA.room.showLayer('Aboves/door_opened');
+    }
+}
+
 
 function closePopup(){
     if (currentPopup !== undefined) {

@@ -853,6 +853,39 @@
                  "width":269.571136827774,
                  "x":1042.8863172226,
                  "y":1023.82573179033
+                }, 
+                {
+                 "height":38.0304243394716,
+                 "id":16,
+                 "name":"elevator_enter_zone",
+                 "rotation":0,
+                 "type":"area",
+                 "visible":true,
+                 "width":180.144115292234,
+                 "x":1629.3034427542,
+                 "y":814.651721377102
+                }, 
+                {
+                 "height":72.6392251815981,
+                 "id":17,
+                 "name":"taxi_zone_1",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":130.750605326877,
+                 "x":992.73607748184,
+                 "y":668.280871670702
+                }, 
+                {
+                 "height":65.9257864004521,
+                 "id":18,
+                 "name":"car_zone_2",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":129.967978903748,
+                 "x":994.537577698248,
+                 "y":864.5695987945
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -993,7 +1026,7 @@
          "y":0
         }],
  "nextlayerid":23,
- "nextobjectid":16,
+ "nextobjectid":20,
  "orientation":"orthogonal",
  "properties":[
         {

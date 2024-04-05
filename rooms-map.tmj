@@ -2151,6 +2151,12 @@
                  "height":250.502834156153,
                  "id":1,
                  "name":"room_1",
+                 "properties":[
+                        {
+                         "name":"roomId",
+                         "type":"int",
+                         "value":1
+                        }],
                  "rotation":0,
                  "type":"room_1",
                  "visible":true,
@@ -2173,6 +2179,12 @@
                  "height":245.017370634485,
                  "id":3,
                  "name":"room_2",
+                 "properties":[
+                        {
+                         "name":"roomId",
+                         "type":"int",
+                         "value":2
+                        }],
                  "rotation":0,
                  "type":"room_2",
                  "visible":true,
@@ -2216,6 +2228,12 @@
                         {
                          "x":34.4289511463218,
                          "y":4.73572123375966
+                        }],
+                 "properties":[
+                        {
+                         "name":"roomId",
+                         "type":"int",
+                         "value":3
                         }],
                  "rotation":0,
                  "type":"room_3",
@@ -2264,6 +2282,12 @@
                          "x":4.68055230517166,
                          "y":531.242686637023
                         }],
+                 "properties":[
+                        {
+                         "name":"roomId",
+                         "type":"int",
+                         "value":4
+                        }],
                  "rotation":0,
                  "type":"room_4",
                  "visible":true,
@@ -2275,6 +2299,12 @@
                  "height":311.256728293939,
                  "id":8,
                  "name":"room_5",
+                 "properties":[
+                        {
+                         "name":"roomId",
+                         "type":"int",
+                         "value":5
+                        }],
                  "rotation":0,
                  "type":"room_5",
                  "visible":true,
@@ -2286,6 +2316,12 @@
                  "height":308.916452141353,
                  "id":9,
                  "name":"room_6",
+                 "properties":[
+                        {
+                         "name":"roomId",
+                         "type":"int",
+                         "value":6
+                        }],
                  "rotation":0,
                  "type":"room_6",
                  "visible":true,
@@ -2322,6 +2358,12 @@
                          "x":-4.68055230517211,
                          "y":224.666510648256
                         }],
+                 "properties":[
+                        {
+                         "name":"roomId",
+                         "type":"int",
+                         "value":7
+                        }],
                  "rotation":0,
                  "type":"room_7",
                  "visible":true,
@@ -2357,6 +2399,12 @@
                         {
                          "x":5.11639805576851,
                          "y":304.42568431824
+                        }],
+                 "properties":[
+                        {
+                         "name":"roomId",
+                         "type":"int",
+                         "value":8
                         }],
                  "rotation":0,
                  "type":"room_8",
