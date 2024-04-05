@@ -104,7 +104,7 @@ WA.onInit().then(async () => {
     for (const chamber of chambers) {
         WA.room.area.onLeave(chamber.name).subscribe(closePopup);
         WA.room.area.onLeave(chamber.name).subscribe(closeModal);
-        WA.room.area.onLeave(chamber.name).subscribe(closeWebiste);
+        WA.room.area.onLeave(chamber.name).subscribe(closeWebsite);
     }
 
     bootstrapExtra().then(() => {
@@ -120,7 +120,7 @@ function closePopup() {
     }
 }
 
-function closeWebiste() {
+function closeWebsite() {
     if (currentWebsite !== undefined) {
         currentWebsite.close();
         currentWebsite = undefined;
