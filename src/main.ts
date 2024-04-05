@@ -47,7 +47,7 @@ WA.onInit().then(async () => {
 
 
     // for rooms
-    [1, 2].forEach((roomNumber) => {
+    [1, 2, 3, 4, 5, 6, 7, 8].forEach((roomNumber) => {
         const displayDoor = (state: boolean, room: number) => {
             if (state) {
                 WA.room.showLayer(`doors/room_${room}/door_closed`);
