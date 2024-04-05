@@ -738,6 +738,50 @@
                  "width":82.0895522388059,
                  "x":680.597014925373,
                  "y":292.537313432836
+                }, 
+                {
+                 "height":38.9209502080257,
+                 "id":8,
+                 "name":"pool_reservation_popup",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":95.9602737887532,
+                 "x":189.90739498054,
+                 "y":97.9734263857201
+                }, 
+                {
+                 "height":36.241610738255,
+                 "id":10,
+                 "name":"hammam_reservation_popup",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":91.9463087248322,
+                 "x":678.523489932886,
+                 "y":232.214765100671
+                }, 
+                {
+                 "height":69.6296296296296,
+                 "id":14,
+                 "name":"swimming_pool_popup",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":173.333333333333,
+                 "x":397.037037037037,
+                 "y":-66.6666666666667
+                }, 
+                {
+                 "height":69.6296,
+                 "id":15,
+                 "name":"hammam_popup",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":173.333,
+                 "x":763.70387037037,
+                 "y":-76.2962814814815
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -868,7 +912,7 @@
          "y":0
         }],
  "nextlayerid":21,
- "nextobjectid":8,
+ "nextobjectid":16,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",
