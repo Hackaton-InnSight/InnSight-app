@@ -18,7 +18,7 @@ let currentPopup: any = undefined;
 WA.onInit().then(async () => {
     console.log('Scripting API ready');
     console.log('Player tags: ', WA.player.tags)
-    console.log(WA.state)
+    console.log("state", WA.state)
 
     WA.room.area.onEnter('clock').subscribe(() => {
         const today = new Date();
@@ -46,8 +46,43 @@ WA.onInit().then(async () => {
     WA.room.area.onLeave('carPopup').subscribe(closePopup);
 
 
+    // for rooms
+    [1, 2].forEach((roomNumber) => {
+        const displayDoor = (state: boolean, room: number) => {
+            if (state) {
+                WA.room.showLayer(`doors/room_${room}/door_closed`);
+                WA.room.hideLayer(`doors/room_${room}/door_opened`);
+            } else {
+                WA.room.hideLayer(`doors/room_${room}/door_closed`);
+                WA.room.showLayer(`doors/room_${room}/door_opened`);
+            }
+        };
+        //
+        WA.state.onVariableChange(`door_state_${roomNumber}`).subscribe((doorState) => {
+            displayDoor(doorState as boolean, roomNumber);
+        });
+        //
+        let openCloseMessage: ActionMessage | undefined;
+        WA.room.area.onEnter(`door_inside_${roomNumber}`).subscribe(() => {
+            openCloseMessage = WA.ui.displayActionMessage({
+                message: "Press 'space' to open/close the door",
+                callback: () => {
+                    WA.state[`door_state_${roomNumber}`] = !WA.state[`door_state_${roomNumber}`];
+                }
+            });
+        });
+        WA.room.area.onLeave(`door_inside_${roomNumber}`).subscribe(() => {
+            if (openCloseMessage !== undefined) {
+                openCloseMessage.remove();
+            }
+        });
+
+    });
+
+
+    // Restaurant door
     WA.state.onVariableChange('doorState').subscribe((doorState) => {
-        displayDoor(doorState as boolean);
+        displayDoorRestaurant(doorState as boolean);
     });
 
     let openCloseMessage: ActionMessage | undefined;
@@ -64,7 +99,6 @@ WA.onInit().then(async () => {
             openCloseMessage.remove();
         }
     });
-
 
      WA.room.area.onEnter('elevator_zone').subscribe(() => {
          WA.ui.website.open({
@@ -133,7 +167,7 @@ WA.onInit().then(async () => {
 /**
  * Utility function to display the correct door image depending on the state of the door.
  */
-function displayDoor(state: boolean) {
+function displayDoorRestaurant(state: boolean) {
     if (state) {
         WA.room.showLayer('Fixtures/door_closed');
         WA.room.hideLayer('Aboves/door_opened');
