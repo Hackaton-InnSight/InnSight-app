@@ -10,6 +10,7 @@ const API_BASE_URL = "http://localhost:8080/"
 console.log('Script started successfully');
 
 let currentPopup: any = undefined;
+let currentWebsite: any = undefined;
 
 async function fetchDataFromAPI(apiEndpoint: RequestInfo | URL) {
     const response = await fetch(apiEndpoint);
@@ -39,18 +40,23 @@ WA.onInit().then(async () => {
                     title: "Booking",
                     src: 'https://workadventu.re'
                 });
+
+                currentWebsite = await WA.ui.website.open({
+                    url: "https://hackaton-innsight.github.io/room-availabality/?roomId=5&isAvailable=true",
+                    position: {
+                        vertical: "middle",
+                        horizontal: "middle",
+                    },
+                    size: {
+                        height: "13vh",
+                        width: "37vw",
+                    },
+                })
             } catch (error) {
                 console.error("Error fetching chamber details");
             }
         });
     }
-
-    // Closing popup and modal when leaving a room.
-    for (const chamber of chambers) {
-        WA.room.area.onLeave(chamber.name).subscribe(closePopup);
-        WA.room.area.onLeave(chamber.name).subscribe(closeModal);
-    }
-
 
     //Spa zones
     WA.room.area.onEnter('spa_counter').subscribe(() => {
@@ -94,6 +100,13 @@ WA.onInit().then(async () => {
     })
     WA.room.area.onLeave('hammam').subscribe(closePopup)
 
+    // Closing popup and modal when leaving a room.
+    for (const chamber of chambers) {
+        WA.room.area.onLeave(chamber.name).subscribe(closePopup);
+        WA.room.area.onLeave(chamber.name).subscribe(closeModal);
+        WA.room.area.onLeave(chamber.name).subscribe(closeWebiste);
+    }
+
     bootstrapExtra().then(() => {
         console.log('Scripting API Extra ready');
     }).catch(e => console.error(e));
@@ -104,6 +117,13 @@ function closePopup() {
     if (currentPopup !== undefined) {
         currentPopup.close();
         currentPopup = undefined;
+    }
+}
+
+function closeWebiste() {
+    if (currentWebsite !== undefined) {
+        currentWebsite.close();
+        currentWebsite = undefined;
     }
 }
 
