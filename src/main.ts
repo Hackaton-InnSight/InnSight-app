@@ -9,7 +9,7 @@ import {ActionMessage} from "@workadventure/iframe-api-typings";
 
 //const API_BASE_URL = "http://localhost:8080/"
 const API_BASE_URL = "https://backend-junv3t2loq-ew.a.run.app/"
-const FRONT_URL = "https://reservation-api-u7r1.onrender.com/"
+const FRONT_URL = "https://localhost:5143"
 
 console.log('Script started successfully');
 
