@@ -937,7 +937,7 @@
                  "id":17,
                  "name":"taxi_zone_1",
                  "rotation":0,
-                 "type":"",
+                 "type":"area",
                  "visible":true,
                  "width":130.750605326877,
                  "x":992.73607748184,
@@ -948,7 +948,7 @@
                  "id":18,
                  "name":"car_zone_2",
                  "rotation":0,
-                 "type":"",
+                 "type":"area",
                  "visible":true,
                  "width":129.967978903748,
                  "x":994.537577698248,
@@ -1093,7 +1093,7 @@
          "y":0
         }],
  "nextlayerid":24,
- "nextobjectid":20,
+ "nextobjectid":21,
  "orientation":"orthogonal",
  "properties":[
         {

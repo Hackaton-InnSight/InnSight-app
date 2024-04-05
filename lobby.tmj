@@ -1480,7 +1480,7 @@
                  "id":1,
                  "name":"lobby_counter",
                  "rotation":0,
-                 "type":"",
+                 "type":"area",
                  "visible":true,
                  "width":135.746606334842,
                  "x":1579.02948978,
@@ -1677,6 +1677,12 @@
  "nextlayerid":23,
  "nextobjectid":4,
  "orientation":"orthogonal",
+ "properties":[
+        {
+         "name":"script",
+         "type":"string",
+         "value":"src\/main.ts"
+        }],
  "renderorder":"right-down",
  "tiledversion":"1.10.2",
  "tileheight":32,

@@ -5707,7 +5707,7 @@
          "value":"src\/main.ts"
         }],
  "renderorder":"right-down",
- "tiledversion":"git",
+ "tiledversion":"1.10.2",
  "tileheight":32,
  "tilesets":[
         {
