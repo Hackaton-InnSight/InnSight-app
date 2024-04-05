@@ -17,41 +17,37 @@ WA.onInit().then(async () => {
     console.log('Scripting API ready');
     console.log('Player tags: ', WA.player.tags)
 
-    WA.room.area.onEnter('clock').subscribe(() => {
-        const today = new Date();
-        const time = today.getHours() + ":" + today.getMinutes();
-        currentPopup = WA.ui.openPopup("clockPopup", "It's " + time, []);
-    })
-
-    WA.room.area.onLeave('clock').subscribe(closePopup)
-
     const chambers = await getChambersWithId();
 
     // Initialize onEnter function for each chamber in the hotel.
     for (const chamber of chambers) {
         WA.room.area.onEnter(chamber.name).subscribe(async () => {
             try {
-                const data = await fetchChamberData(chamber.chamberId);
-                console.log(data.description);
-                currentPopup = WA.ui.openPopup("chamberDetailPopup", data.description, []);
+                console.log(chamber.name)
+                console.log(chamber.chamberId)
+                //const data = await fetchChamberData(chamber.chamberId);
+                //console.log(data.description);
+                //currentPopup = WA.ui.openPopup("chamberDetailPopup", data.description, []);
+                currentPopup = WA.ui.openPopup(`${chamber.name}_details`, chamber.name, []);
             } catch (error) {
                 console.error("Error fetching chamber details");
             }
         });
     }
 
-    /* Open the modal for each chamber in the hotel.
+    /*
+    //Open the modal for each chamber in the hotel.
     for (const chamber of chambers)
     {
         WA.room.area.onEnter(chamber.name).subscribe(() => {
             WA.ui.modal.openModal({
-                allow: null, allowApi: true, position: "right", title: "",
+                allow: null, allowApi: false, position: "right", title: "",
                 src: 'https://workadventu.re'
 
             });
         });
     }
-     */
+    */
 
     for (const chamber of chambers) {
         WA.room.area.onLeave(chamber.name).subscribe(closePopup);
@@ -77,7 +73,7 @@ function filterChambersWithIdFromTiledLayer(layers: Layer[]): TiledObject[] {
     if (!floorLayer || !floorLayer.objects) return [];
 
     return floorLayer.objects.filter(obj =>
-        obj.properties?.some(prop => prop.name === "chamberId")
+        obj.properties?.some(prop => prop.name === "roomId")
     );
 }
 
@@ -87,10 +83,10 @@ async function getChambersWithId(): Promise<{ name: string; chamberId: number }[
     const chambersWithId = filterChambersWithIdFromTiledLayer(hotelMap.layers)
 
     return chambersWithId.map(chamber => {
-        const chamberIdProp = chamber.properties?.find(prop => prop.name === "chamberId");
+        const roomIdProp = chamber.properties?.find(prop => prop.name === "roomId");
         return {
             name: chamber.name,
-            chamberId: chamberIdProp ? chamberIdProp.value : null,
+            chamberId: roomIdProp ? roomIdProp.value : null,
         };
     });
 }

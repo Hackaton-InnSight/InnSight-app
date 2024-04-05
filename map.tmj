@@ -326,17 +326,6 @@
          "name":"floorLayer",
          "objects":[
                 {
-                 "height":61.6672851518306,
-                 "id":12,
-                 "name":"clockPopup",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":93.7162209047986,
-                 "x":483.919325398621,
-                 "y":14.0269116471316
-                }, 
-                {
                  "height":128,
                  "id":13,
                  "name":"jitsiChillZone",
@@ -418,17 +407,6 @@
                  "y":224
                 }, 
                 {
-                 "height":39.6969696969697,
-                 "id":17,
-                 "name":"clock",
-                 "rotation":0,
-                 "type":"area",
-                 "visible":true,
-                 "width":50.2727272727272,
-                 "x":438.484848484849,
-                 "y":96.3333333333333
-                }, 
-                {
                  "height":64,
                  "id":18,
                  "name":"to-conference",
@@ -480,32 +458,82 @@
                  "y":130
                 }, 
                 {
-                 "height":44,
-                 "id":24,
-                 "name":"chamber2",
-                 "properties":[
-                        {
-                         "name":"chamberId",
-                         "type":"int",
-                         "value":21
-                        }],
-                 "rotation":0,
-                 "type":"area",
-                 "visible":true,
-                 "width":97,
-                 "x":426.5,
-                 "y":242
-                }, 
-                {
                  "height":61,
                  "id":25,
-                 "name":"chamberDetailPopup",
+                 "name":"front_room_2_details",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":129,
-                 "x":656,
-                 "y":121
+                 "x":282,
+                 "y":206
+                }, 
+                {
+                 "height":99,
+                 "id":26,
+                 "name":"room_1",
+                 "rotation":0,
+                 "type":"area",
+                 "visible":true,
+                 "width":178,
+                 "x":361,
+                 "y":556
+                }, 
+                {
+                 "height":27,
+                 "id":28,
+                 "name":"front_room_2",
+                 "properties":[
+                        {
+                         "name":"roomId",
+                         "type":"int",
+                         "value":2
+                        }],
+                 "rotation":0,
+                 "type":"area",
+                 "visible":true,
+                 "width":199,
+                 "x":388,
+                 "y":223
+                }, 
+                {
+                 "height":99,
+                 "id":29,
+                 "name":"room_2",
+                 "rotation":0,
+                 "type":"area",
+                 "visible":true,
+                 "width":178,
+                 "x":397,
+                 "y":102.5
+                }, 
+                {
+                 "height":92,
+                 "id":31,
+                 "name":"front_room_1",
+                 "properties":[
+                        {
+                         "name":"roomId",
+                         "type":"int",
+                         "value":1
+                        }],
+                 "rotation":0,
+                 "type":"area",
+                 "visible":true,
+                 "width":32,
+                 "x":318,
+                 "y":554
+                }, 
+                {
+                 "height":61,
+                 "id":32,
+                 "name":"front_room_1_details",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":129,
+                 "x":265.5,
+                 "y":494.5
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -588,7 +616,7 @@
          "y":0
         }],
  "nextlayerid":63,
- "nextobjectid":26,
+ "nextobjectid":33,
  "orientation":"orthogonal",
  "properties":[
         {
