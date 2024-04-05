@@ -867,7 +867,7 @@
                  "id":8,
                  "name":"restaurant_zone",
                  "rotation":0,
-                 "type":"",
+                 "type":"area",
                  "visible":true,
                  "width":88.6075949367089,
                  "x":1960.75949367089,
