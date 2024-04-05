@@ -298,7 +298,6 @@ function getAllFrontRoomObjects(layers: Layer[]): TiledObject[] {
 async function getFrontRoomId(): Promise<{ name: string; chamberId: number }[]> {
     const hotelMap: TiledMap = await WA.room.getTiledMap();
     const frontRooms = getAllFrontRoomObjects(hotelMap.layers)
-
     return frontRooms.map(frontroom => {
         const roomIdProp = frontroom.properties?.find(prop => prop.name === "frontRoomId");
         return {
@@ -312,7 +311,6 @@ async function getFrontRoomId(): Promise<{ name: string; chamberId: number }[]> 
 async function getChambersWithId(): Promise<{ name: string; chamberId: number }[]> {
     const hotelMap: TiledMap = await WA.room.getTiledMap();
     const chambersWithId = filterChambersWithIdFromTiledLayer(hotelMap.layers)
-
     return chambersWithId.map(chamber => {
         const roomIdProp = chamber.properties?.find(prop => prop.name === "roomId");
         return {
