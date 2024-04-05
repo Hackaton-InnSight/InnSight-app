@@ -127,7 +127,7 @@ WA.onInit().then(async () => {
         const mySound = WA.sound.loadSound("./sounds/son_elevator.ogg");
         const config = {
             volume : 1,
-            loop : true,
+            loop : false,
             rate : 1,
             detune : 1,
             delay : 0,
