@@ -23,37 +23,29 @@ WA.onInit().then(async () => {
     for (const chamber of chambers) {
         WA.room.area.onEnter(chamber.name).subscribe(async () => {
             try {
-                console.log(chamber.name)
-                console.log(chamber.chamberId)
-                //const data = await fetchChamberData(chamber.chamberId);
-                //console.log(data.description);
-                //currentPopup = WA.ui.openPopup("chamberDetailPopup", data.description, []);
-                currentPopup = WA.ui.openPopup(`${chamber.name}_details`, chamber.name, []);
+                const data = await fetchChamberData(chamber.chamberId);
+                currentPopup = WA.ui.openPopup(`${chamber.name}_details`, data.description, []);
+                WA.ui.modal.openModal({
+                    allow: null,
+                    allowApi: false,
+                    position: "right",
+                    title: "Booking",
+                    src: 'https://workadventu.re'
+                });
             } catch (error) {
                 console.error("Error fetching chamber details");
             }
         });
     }
 
-    /*
-    //Open the modal for each chamber in the hotel.
-    for (const chamber of chambers)
-    {
-        WA.room.area.onEnter(chamber.name).subscribe(() => {
-            WA.ui.modal.openModal({
-                allow: null, allowApi: false, position: "right", title: "",
-                src: 'https://workadventu.re'
-
-            });
-        });
-    }
-    */
-
+    // Closing popup and modal when leaving a room.
     for (const chamber of chambers) {
         WA.room.area.onLeave(chamber.name).subscribe(closePopup);
+        WA.room.area.onLeave(chamber.name).subscribe(closeModal);
     }
 
-    // The line below bootstraps the Scripting API Extra library that adds a number of advanced properties/features to WorkAdventure
+    // The line below bootstraps the Scripting API Extra library that adds
+    // a number of advanced properties/features to WorkAdventure
     bootstrapExtra().then(() => {
         console.log('Scripting API Extra ready');
     }).catch(e => console.error(e));
@@ -67,6 +59,10 @@ function closePopup(){
     }
 }
 
+function closeModal(){
+    WA.ui.modal.closeModal()
+}
+
 // Get all chambers with an chamberId custom prop.
 function filterChambersWithIdFromTiledLayer(layers: Layer[]): TiledObject[] {
     const floorLayer = layers.find(layer => layer.name === "floorLayer");
@@ -77,7 +73,7 @@ function filterChambersWithIdFromTiledLayer(layers: Layer[]): TiledObject[] {
     );
 }
 
-//  Return an array with the chamber name and the chamberId for each chamber.
+// Return an array with the chamber name and the chamberId for each chamber.
 async function getChambersWithId(): Promise<{ name: string; chamberId: number }[]> {
     const hotelMap: TiledMap = await WA.room.getTiledMap();
     const chambersWithId = filterChambersWithIdFromTiledLayer(hotelMap.layers)
