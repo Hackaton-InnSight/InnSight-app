@@ -5292,6 +5292,12 @@
                  "height":38.6622849410401,
                  "id":12,
                  "name":"front_room_1",
+                 "properties":[
+                        {
+                         "name":"frontRoomId",
+                         "type":"int",
+                         "value":1
+                        }],
                  "rotation":0,
                  "type":"front_room_1",
                  "visible":true,
@@ -5303,6 +5309,12 @@
                  "height":32.8629421998839,
                  "id":14,
                  "name":"front_room_2",
+                 "properties":[
+                        {
+                         "name":"frontRoomId",
+                         "type":"int",
+                         "value":2
+                        }],
                  "rotation":0,
                  "type":"front_room_2",
                  "visible":true,
@@ -5314,6 +5326,12 @@
                  "height":42.5285134351439,
                  "id":15,
                  "name":"front_room_3",
+                 "properties":[
+                        {
+                         "name":"frontRoomId",
+                         "type":"int",
+                         "value":3
+                        }],
                  "rotation":0,
                  "type":"front_room_3",
                  "visible":true,
@@ -5325,6 +5343,12 @@
                  "height":61.8596559056641,
                  "id":16,
                  "name":"front_room_4",
+                 "properties":[
+                        {
+                         "name":"frontRoomId",
+                         "type":"int",
+                         "value":4
+                        }],
                  "rotation":0,
                  "type":"front_room_4",
                  "visible":true,
@@ -5336,6 +5360,12 @@
                  "height":38.6622849410401,
                  "id":17,
                  "name":"front_room_5",
+                 "properties":[
+                        {
+                         "name":"frontRoomId",
+                         "type":"int",
+                         "value":5
+                        }],
                  "rotation":0,
                  "type":"front_room_5",
                  "visible":true,
@@ -5347,6 +5377,12 @@
                  "height":50.2609704233523,
                  "id":18,
                  "name":"front_room_6",
+                 "properties":[
+                        {
+                         "name":"frontRoomId",
+                         "type":"int",
+                         "value":6
+                        }],
                  "rotation":0,
                  "type":"front_room_6",
                  "visible":true,
@@ -5358,6 +5394,12 @@
                  "height":28.9967137057802,
                  "id":19,
                  "name":"front_room_7",
+                 "properties":[
+                        {
+                         "name":"frontRoomId",
+                         "type":"int",
+                         "value":7
+                        }],
                  "rotation":0,
                  "type":"front_room_7",
                  "visible":true,
@@ -5369,6 +5411,12 @@
                  "height":61.8596559056641,
                  "id":20,
                  "name":"front_room_8",
+                 "properties":[
+                        {
+                         "name":"frontRoomId",
+                         "type":"int",
+                         "value":8
+                        }],
                  "rotation":0,
                  "type":"front_room_8",
                  "visible":true,
@@ -5468,6 +5516,12 @@
                  "height":75.9494,
                  "id":29,
                  "name":"front_room_6_details",
+                 "properties":[
+                        {
+                         "name":"frontRoomId",
+                         "type":"int",
+                         "value":6
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -5653,7 +5707,7 @@
          "value":"src\/main.ts"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.10.2",
+ "tiledversion":"git",
  "tileheight":32,
  "tilesets":[
         {
