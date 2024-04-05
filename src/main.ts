@@ -2,8 +2,7 @@
 
 import {bootstrapExtra} from "@workadventure/scripting-api-extra";
 // MapLogic.ts
-
-import { TiledMap, TiledObject, Layer } from './interfaces/TiledMap';
+import {Layer, TiledMap, TiledObject} from './interfaces/TiledMap';
 import axios from "axios";
 
 const API_BASE_URL = "http://localhost:8080/"
@@ -11,6 +10,14 @@ const API_BASE_URL = "http://localhost:8080/"
 console.log('Script started successfully');
 
 let currentPopup: any = undefined;
+
+async function fetchDataFromAPI(apiEndpoint: RequestInfo | URL) {
+    const response = await fetch(apiEndpoint);
+    if (!response.ok) {
+        throw new Error('Échec de l’appel API');
+    }
+    return await response.json();
+}
 
 // Waiting for the API to be ready
 WA.onInit().then(async () => {
@@ -57,6 +64,48 @@ WA.onInit().then(async () => {
         WA.room.area.onLeave(chamber.name).subscribe(closePopup);
     }
 
+    //Spa zones
+    WA.room.area.onEnter('spa_counter').subscribe(() => {
+        WA.ui.modal.openModal({
+            allow: null, allowApi: true, position: "right", title: "Book your activity",
+            src: 'https://workadventu.re/?id='
+        });
+    })
+    WA.room.area.onLeave('spa_counter').subscribe(() => {
+        WA.ui.modal.closeModal()
+    })
+
+    WA.room.area.onEnter('pool_reservation').subscribe(async () => {
+        try {
+            closePopup()
+            const apiResult = await fetchDataFromAPI(`${API_BASE_URL}temperature/current`);
+            const temperature = apiResult.temperature;
+            currentPopup = WA.ui.openPopup("pool_reservation_popup", "Température actuelle : " + temperature, []);
+        } catch (error) {
+            console.error('Erreur lors de l’appel à l’API:', error);
+            currentPopup = WA.ui.openPopup("pool_reservation_popup", "Impossible de récupérer les données.", []);
+        }
+    })
+    WA.room.area.onLeave('pool_reservation').subscribe(closePopup)
+
+    WA.room.area.onEnter('swimming_pool').subscribe(() => {
+        closePopup();
+        currentPopup = WA.ui.openPopup("swimming_pool_popup", "Plouf plouf", []);
+    })
+    WA.room.area.onLeave('swimming_pool').subscribe(closePopup)
+
+    WA.room.area.onEnter('hammam_reservation').subscribe(async () => {
+        closePopup()
+        currentPopup = WA.ui.openPopup("hammam_reservation_popup", "Température actuelle : 62°C", []);
+    })
+    WA.room.area.onLeave('hammam_reservation').subscribe(closePopup)
+
+    WA.room.area.onEnter('hammam').subscribe(async () => {
+        closePopup()
+        currentPopup = WA.ui.openPopup("hammam_popup", "Il fait chaud ici...", []);
+    })
+    WA.room.area.onLeave('hammam').subscribe(closePopup)
+
     // The line below bootstraps the Scripting API Extra library that adds a number of advanced properties/features to WorkAdventure
     bootstrapExtra().then(() => {
         console.log('Scripting API Extra ready');
@@ -64,7 +113,7 @@ WA.onInit().then(async () => {
 
 }).catch(e => console.error(e));
 
-function closePopup(){
+function closePopup() {
     if (currentPopup !== undefined) {
         currentPopup.close();
         currentPopup = undefined;
