@@ -74,9 +74,10 @@ WA.onInit().then(async () => {
                  horizontal: "middle",
              },
              size: {
-                 height: "27.5vh",
+                 height: "30vh",
                  width: "auto",
              },
+             allowApi: true
          })
      });
 
