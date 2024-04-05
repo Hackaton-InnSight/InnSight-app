@@ -5033,7 +5033,7 @@
                          "value":1
                         }],
                  "rotation":0,
-                 "type":"room_1",
+                 "type":"area",
                  "visible":true,
                  "width":490.671835267138,
                  "x":3113.91479246663,
@@ -5061,7 +5061,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"room_2",
+                 "type":"area",
                  "visible":true,
                  "width":495.050102391109,
                  "x":2570.85390382154,
@@ -5111,7 +5111,7 @@
                          "value":3
                         }],
                  "rotation":0,
-                 "type":"room_3",
+                 "type":"area",
                  "visible":true,
                  "width":0,
                  "x":2391.46580122969,
@@ -5164,7 +5164,7 @@
                          "value":4
                         }],
                  "rotation":0,
-                 "type":"room_4",
+                 "type":"area",
                  "visible":true,
                  "width":0,
                  "x":2115.60964193775,
@@ -5181,7 +5181,7 @@
                          "value":5
                         }],
                  "rotation":0,
-                 "type":"room_5",
+                 "type":"area",
                  "visible":true,
                  "width":496.138544348233,
                  "x":2571.96349169202,
@@ -5198,7 +5198,7 @@
                          "value":6
                         }],
                  "rotation":0,
-                 "type":"room_6",
+                 "type":"area",
                  "visible":true,
                  "width":498.478820500819,
                  "x":3110.2270067868,
@@ -5240,7 +5240,7 @@
                          "value":7
                         }],
                  "rotation":0,
-                 "type":"room_7",
+                 "type":"area",
                  "visible":true,
                  "width":0,
                  "x":3753.80294874795,
@@ -5282,7 +5282,7 @@
                          "value":8
                         }],
                  "rotation":0,
-                 "type":"room_8",
+                 "type":"area",
                  "visible":true,
                  "width":0,
                  "x":3650.55001279099,
@@ -5292,8 +5292,14 @@
                  "height":38.6622849410401,
                  "id":12,
                  "name":"front_room_1",
+                 "properties":[
+                        {
+                         "name":"frontRoomId",
+                         "type":"int",
+                         "value":1
+                        }],
                  "rotation":0,
-                 "type":"front_room_1",
+                 "type":"area",
                  "visible":true,
                  "width":56.060313164508,
                  "x":3319.15716218829,
@@ -5303,8 +5309,14 @@
                  "height":32.8629421998839,
                  "id":14,
                  "name":"front_room_2",
+                 "properties":[
+                        {
+                         "name":"frontRoomId",
+                         "type":"int",
+                         "value":2
+                        }],
                  "rotation":0,
-                 "type":"front_room_2",
+                 "type":"area",
                  "visible":true,
                  "width":54.1271989174561,
                  "x":2772.08583027257,
@@ -5314,8 +5326,14 @@
                  "height":42.5285134351439,
                  "id":15,
                  "name":"front_room_3",
+                 "properties":[
+                        {
+                         "name":"frontRoomId",
+                         "type":"int",
+                         "value":3
+                        }],
                  "rotation":0,
-                 "type":"front_room_3",
+                 "type":"area",
                  "visible":true,
                  "width":36.7291706939882,
                  "x":2470.52000773246,
@@ -5325,8 +5343,14 @@
                  "height":61.8596559056641,
                  "id":16,
                  "name":"front_room_4",
+                 "properties":[
+                        {
+                         "name":"frontRoomId",
+                         "type":"int",
+                         "value":4
+                        }],
                  "rotation":0,
-                 "type":"front_room_4",
+                 "type":"area",
                  "visible":true,
                  "width":36.7291706939877,
                  "x":2466.65377923835,
@@ -5336,8 +5360,14 @@
                  "height":38.6622849410401,
                  "id":17,
                  "name":"front_room_5",
+                 "properties":[
+                        {
+                         "name":"frontRoomId",
+                         "type":"int",
+                         "value":5
+                        }],
                  "rotation":0,
-                 "type":"front_room_5",
+                 "type":"area",
                  "visible":true,
                  "width":71.525227140924,
                  "x":2988.59462594239,
@@ -5347,8 +5377,14 @@
                  "height":50.2609704233523,
                  "id":18,
                  "name":"front_room_6",
+                 "properties":[
+                        {
+                         "name":"frontRoomId",
+                         "type":"int",
+                         "value":6
+                        }],
                  "rotation":0,
-                 "type":"front_room_6",
+                 "type":"area",
                  "visible":true,
                  "width":73.4583413879759,
                  "x":3120.04639474193,
@@ -5358,8 +5394,14 @@
                  "height":28.9967137057802,
                  "id":19,
                  "name":"front_room_7",
+                 "properties":[
+                        {
+                         "name":"frontRoomId",
+                         "type":"int",
+                         "value":7
+                        }],
                  "rotation":0,
-                 "type":"front_room_7",
+                 "type":"area",
                  "visible":true,
                  "width":65.7258843997683,
                  "x":3653.58592692828,
@@ -5369,8 +5411,14 @@
                  "height":61.8596559056641,
                  "id":20,
                  "name":"front_room_8",
+                 "properties":[
+                        {
+                         "name":"frontRoomId",
+                         "type":"int",
+                         "value":8
+                        }],
                  "rotation":0,
-                 "type":"front_room_8",
+                 "type":"area",
                  "visible":true,
                  "width":52.1940846704042,
                  "x":3661.31838391649,
@@ -5468,6 +5516,12 @@
                  "height":75.9494,
                  "id":29,
                  "name":"front_room_6_details",
+                 "properties":[
+                        {
+                         "name":"frontRoomId",
+                         "type":"int",
+                         "value":6
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -5653,7 +5707,7 @@
          "value":"src\/main.ts"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.10.2",
+ "tiledversion":"git",
  "tileheight":32,
  "tilesets":[
         {
